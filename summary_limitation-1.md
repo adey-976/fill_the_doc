@@ -1,0 +1,98 @@
+## Summary - Review Outcome
+
+**Risk Rating Table**
+
+| Risk Rating Component | Rating (Please provide the numeric rating: Low = 0, Medium = 1, High =2) | Rationale |
+|---|---|---|
+| AI Technique | 1 | The GenAI Object leverages the pre-trained large language model "Gemini-2.5-flash" and embedding model "text-embedding-005" developed by reputable vendor- Google. The base model is used without further fine-tuning using Citi specific data. There's no additional complexity involved. Therefore, the risk rating for "AI Technique" component deems to be 'Medium'. |
+| Criticality of Use | 0 | The Object has low impact on the decision making as it only serves as an assistant tool to enhance developer productivity. The application is non-content generating and will be used in an assistive manner by internal non-customer facing users (~40,000 developers). The outputs are 100% manually reviewed by the user before any use. Therefore, the risk rating for "Criticality of Use" component deems to be 'Low'. |
+| Existing Issues | 2 | There is 1 High, 1 Medium, and 2 Low severity limitations being raised during this review. The presence of a High Severity Limitation elevates the risk rating for "Existing Issues" to "High". |
+| **Total Risk Rating** | **3** | Based on the Model Risk rating criteria outlined in Citi AI Non-model Risk Review Procedure and additional considerations outlined in Preliminary Risk Rating for GenAI use case, the Total Risk Rating of this Object is deemed as 'Medium'. |
+
+**Summary of Review Outcome**
+
+The GenAI Object, "Release On Demand Assist" (Object ID 235939), is designed to enhance developer productivity by providing quick access to information within Release On Demand documentation. The Object is a chatbot that utilizes a Retrieval Augmented Generation (RAG) architecture, leveraging Google's Gemini-2.5-flash and text-embedding-005 models to answer natural language queries. It is intended for an estimated 40,000 internal Citi developers in an assistive capacity. All outputs are subject to 100% review by the developer, a control reinforced by UI warnings and the inclusion of citation links in every response. A contingency plan for vendor availability has been attested to by the Sponsor. Overall, "Release On Demand Assist" is well-suited for its intended purpose, with appropriate controls in place.
+
+Model Risk Management (MRM) conducted a thorough review of the Object Development Document (ODD), covering the Object's scope, purpose, use, specification, performance testing, implementation, and periodic monitoring plan. Based on the critical review, MRM concluded that the Object is fit for its intended use and approved it as a Static AI Non-Model Object, with 4 limitations concerning framework, documentation, performance, and implementation. Among the 4 limitations issued, 1 is High severity, 1 is Medium severity, and 2 have low severity. 3 of these limitations require the Sponsor/Developer to provide remediation actions to mitigate the identified risks. The detailed limitation summary and compensating controls table is attached below. The Object Risk Rating is deemed to be "Medium", with "Medium" risk rating for AI Technique, "Low" risk rating for Criticality of Use, and "High" risk rating for Existing Issues.
+
+---
+
+## Limitations Identified
+
+Based on the review of the Object Development Documentation (ODD) for **ROD Assist (Object ID: 235939)**, the following limitations have been identified.
+
+***
+
+| | |
+| :--- | :--- |
+| **Limitation ID** | |
+| **Limitation Type** | model assumptions and framework |
+| **Limitation Source** | MRM - Validation |
+| **Limitation Description** | This is a vendor object that utilizes a pre-trained large language model provided by Google. While it is known that the Google LLM is a transformer-based and pre-trained on a diverse and vast corpus, detailed information regarding the actual training data, methodology and algorithms used to develop it is not disclosed to Citi due to proprietary reasons and the model's black box nature. |
+| **Limitation Severity** | Low |
+| **Severity Rationale** | Based on MRM's review, the Object limitation severity is determined to be Low. When determining the limitation severity, MRM considered that even though there is limited information available about LLMs' development details, the Object is used in an assistive manner with human in the loop and aims to increase developer's productivity and efficiency. Thus, missing details could result in low impact on AI-Non-Model Object output. No compensating control is required. |
+| **Limitation Action (L.A.) Required? (Y/N)** | N |
+| **L.A. ID** | |
+| **L. Type** | |
+| **L.A. Description** | |
+| **L.A. Rationale** | |
+| **L.A. Recurring? (Y/N)** | |
+| **Remediation Action Description** | |
+| **Sponsor Submission Due Date** | |
+
+***
+
+| | |
+| :--- | :--- |
+| **Limitation ID** | |
+| **Limitation Type** | documentation |
+| **Limitation Source** | MRM - Validation |
+| **Limitation Description** | The ODD has multiple documentation gaps related to the vendor contingency plan, prompt text, and object interdependencies that should be addressed to ensure clarity and completeness. |
+| **Limitation Severity** | Low |
+| **Severity Rationale** | Based on MRM's review, the Object limitation severity is determined to be Low. The core functionality of the object is well-documented, and the identified gaps do not pose a material risk to its operation. The identified issue has low impact on the object performance. Thus, the limitation severity is Low. |
+| **Limitation Action (L.A.) Required? (Y/N)** | Y |
+| **L.A. ID** | |
+| **L.A. Type** | Documentation Enhancement |
+| **L.A. Description** | The sponsor is required to update the ODD to address all identified documentation gaps. |
+| **L.A. Rationale** | Documentation clarity and completeness are essential to fully understand the object's specifications, dependencies, and operational risks. |
+| **L.A. Recurring? (Y/N)** | N |
+| **Remediation Action Description** | 1. In ODD Section 1.0: Provide a detailed description of the contingency plan in case the vendor (Google) is no longer able to support the Object. This should include specific fallback procedures or alternative solutions.<br>2. In ODD Section 2.4.c: Include the full text of the final system prompt in the main body of the ODD for completeness.<br>3. In ODD Section 2.6: Accurately document the Object's interdependency with the R2D2 API gateway, including its official AI Non-model Object ID, and provide an assessment of the impact of any associated risks or open limitations. |
+| **Sponsor Submission Due Date** | Apr 27, 2026 |
+
+***
+
+| | |
+| :--- | :--- |
+| **Limitation ID** | |
+| **Limitation Type** | model fit, back testing, and model performance |
+| **Limitation Source** | MRM - Validation |
+| **Limitation Description** | The ODD contains gaps in the analysis of performance testing results and the design of the ongoing performance assessment (OPA) plan. |
+| **Limitation Severity** | Medium |
+| **Severity Rationale** | Based on MRM's review, the Object limitation severity is determined to be Medium. The lack of root-cause analysis for failures in safety-related test categories (hallucination, toxic) presents a moderate risk. The identified issue has moderate impact on the object performance. Thus, the limitation severity is Medium. |
+| **Limitation Action (L.A.) Required? (Y/N)** | Y |
+| **L.A. ID** | |
+| **L.A. Type** | Performance and Monitoring Enhancement |
+| **L.A. Description** | The sponsor is required to provide additional analysis for performance testing failures and enhance the OPA plan to ensure robust monitoring. |
+| **L.A. Rationale** | A thorough analysis of test failures is critical for understanding and mitigating object weaknesses, and a well-defined OPA plan is necessary to ensure long-term performance and reliability. |
+| **L.A. Recurring? (Y/N)** | N |
+| **Remediation Action Description** | 1. Investigate and provide a detailed root-cause analysis for the performance threshold breaches observed in the `hallucination` (66.7% pass rate) and `toxic` (75.0% pass rate) negative test categories. Update the ODD with this analysis and any corresponding remediation plans to improve the Object's guardrails.<br>2. Update the periodic monitoring sampling plan in ODD Section 5.0 to include: a) a clear definition of the unit of sampling (e.g., query-response pair), b) specific coverage requirements to ensure the sample is representative, and c) a justification for the adequacy of the proposed sample size.<br>3. Update the OPA plan in ODD Section 5.0 to provide a documented methodology for deriving the inner and outer thresholds for all monitoring metrics. Revise the thresholds to serve as more effective and statistically sound indicators of performance degradation. |
+| **Sponsor Submission Due Date** | May 11, 2026 |
+
+***
+
+| | |
+| :--- | :--- |
+| **Limitation ID** | |
+| **Limitation Type** | model algorithm, estimation and implementation |
+| **Limitation Source** | MRM - Validation |
+| **Limitation Description** | The formal implementation sign-off evidence provided in the ODD is in an embedded, unreadable format and cannot be verified by MRM. |
+| **Limitation Severity** | High |
+| **Severity Rationale** | Based on MRM's review, the Object limitation severity is determined to be High. The lack of verifiable UAT sign-off means MRM cannot confirm that necessary production controls are in place and approved for deployment. The identified issue has high impact on the object performance. Thus, the limitation severity is High. |
+| **Limitation Action (L.A.) Required? (Y/N)** | Y |
+| **L.A. ID** | |
+| **L.A. Type** | Implementation Evidence |
+| **L.A. Description** | The sponsor is required to provide complete and readable evidence of the implementation sign-off. |
+| **L.A. Rationale** | MRM requires verifiable evidence of successful implementation and formal sign-off to ensure the object is ready for production use and that all controls have been confirmed. |
+| **L.A. Recurring? (Y/N)** | N |
+| **Remediation Action Description** | In ODD Section 4.0, provide the complete and readable implementation sign-off from the responsible team, confirming that all necessary system integrations and production controls have been successfully tested and are approved for deployment. |
+| **Sponsor Submission Due Date** | Apr 27, 2026 |
